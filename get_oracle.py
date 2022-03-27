@@ -14,7 +14,7 @@ args = parser.parse_args()
 with open(f"data/{args.application}.pkl", 'rb') as f:
     X, latency, energy, power = pickle.load(f)
 
-safe_configs = [x for x in range(1920) if max(power[x]) <= args.constraint]
+safe_configs = [x for x in range(1920) if max(power[x]) < args.constraint]
 latencies = np.array(latency)[safe_configs]
 best_ind = np.argmin(latencies)
 
