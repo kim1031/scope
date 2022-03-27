@@ -55,7 +55,7 @@ class STAGEOPT():
         mean, std = self.safety_model.fit(self.X.values[self.sampled_ind], self.power).predict(self.X.values, return_std = True)
 
         ucb = mean + self.beta * std
-        new_safe_set = [x for x in range(self.N) if ucb[x] <= self.threshold]
+        new_safe_set = [x for x in range(self.N) if ucb[x] < self.threshold]
 
         if len(new_safe_set) == len(self.safe_set):
             self.similar += 1
