@@ -92,7 +92,7 @@ class SCOPE():
             return aq_unique[0]
 
         ## identify next config to sample
-        safe_set = [x for x in avail_inds if self.predicted_power[x] <= self.threshold]
+        safe_set = [x for x in avail_inds if self.predicted_power[x] < self.threshold]
 
         if len(safe_set) == 0:
             aq = np.argsort(self.predicted_power)
