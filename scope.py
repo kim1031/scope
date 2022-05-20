@@ -120,7 +120,6 @@ def run_scope(init_idx, benchmark, model, threshold, directory, sleep_time = 20)
     
     start = time.time()
     apply_system_configurations(configs.iloc[init_idx])
-    overhead = min(time.time() - start, 2)
     overhead_h = [time.time() - start]
     overhead_s = []
 
@@ -143,7 +142,7 @@ def run_scope(init_idx, benchmark, model, threshold, directory, sleep_time = 20)
     while poll is None:
         start = time.time()
         while (time.time() - start) < sleep_time:
-            time.sleep(overhead)
+            time.sleep(1)
             powers = get_power(start_ind)
             if (len(powers) > 0 and np.max(powers)> threshold) or (process.poll() is not None):
                 break
